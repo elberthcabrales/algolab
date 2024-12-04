@@ -32,7 +32,7 @@ class PrefixSumQueries:
 
         return ans
 
-class NumArray:
+class PrefixSum:
     """
         nums:[1,6,3,2,7,2]
         prefix_sum:[0,1,7,10,12,19,21]

@@ -1,6 +1,5 @@
 import unittest
 from prefix_sum.core import PrefixSum
-
 class TestQueriesInPrefixSum(unittest.TestCase):
 
 

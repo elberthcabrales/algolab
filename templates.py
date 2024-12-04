@@ -194,6 +194,7 @@ class templates:
         where to use it?
         199. Binary Tree Right Side View
         1302. Deepest Leaves Sum
+        102. Binary Tree Level Order Traversal
     """
     def binary_tree_bfs(self, root):
         queue = deque([root])
@@ -201,7 +202,6 @@ class templates:
 
         while queue:
             current_length = len(queue)
-            # do logic for current level
 
             for _ in range(current_length):
                 node = queue.popleft()
@@ -210,8 +210,9 @@ class templates:
                     queue.append(node.left)
                 if node.right:
                     queue.append(node.right)
+            # do logic for current level
 
-        return ans(node.right)
+        return ans
 
     """
         Graph: DFS (recursive)
@@ -353,10 +354,9 @@ class templates:
         return heap
 
     """
-        Binary search in sorted array (PENDING)
-        1011. Capacity To Ship Packages Within D Days
-        35. Search Insert Position
-        2824. Count Pairs Whose Sum is Less than Target
+        Binary search in sorted array
+        704. Binary Search
+        278. First Bad Version
     """
 
     def binary_search(self, arr,  target):
@@ -374,11 +374,65 @@ class templates:
         
         # left is the insertion point
         return left
+    """
+        Binary search in 2D matrix
+        74. Search a 2D Matrix
+        240. Search a 2D Matrix II
 
-    # ------------------- PENDING -------------------
+        approach:
+            1. iterate over the minimum of rows and columns
+            2. for each iteration, do a binary search in the row and
+            3. implement a binary search with params matrix, target, start, vertical
+                if is vertical, iterate over the row
+                if is horizontal, iterate over the column
+                    if do not find the target, return False
+            4. if binary search return True, return True else continue with the next iteration
+            
+    """
+    def binary_search(self, matrix: List[List[int]], start: int, target: int, vertical: bool) -> bool:
+        lo = start
+        hi = len(matrix) - 1 if vertical else len(matrix[0]) - 1
+        if vertical:
+            while(lo <= hi):
+                mid = (lo + hi) // 2
+
+                if matrix[mid][start] == target:
+                    return True
+                elif matrix[mid][start] < target:
+                    lo = mid + 1
+                else:
+                    hi = mid - 1
+            return False
+        else:
+            while(lo <= hi):
+                mid = (lo + hi) // 2
+
+                if matrix[start][mid] == target:
+                    return True
+                elif matrix[start][mid] < target:
+                    lo = mid + 1
+                else:
+                    hi = mid - 1
+            
+            return False
+
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        len_row = len(matrix)
+        len_col = len(matrix[0])
+
+        for i in range(min(len_row, len_col)):
+            col_found = self.binary_search(matrix, i, target, True)
+            row_found = self.binary_search(matrix, i, target, False)
+
+            if col_found or row_found:
+                return True
+
+        return False
+    
     """
         Binary search: duplicate elements, left-most insertion point
-        34. Find First and Last Position of Element in Sorted Array
+        278. First Bad Version
+        852. Peak Index in a Mountain Array (NO DUPLICATES)
     """
     def binary_search_with_repeated_left_most(arr, target):
         left = 0
@@ -388,14 +442,11 @@ class templates:
             if arr[mid] >= target:
                 right = mid
             else:
-                left = mid + 1
+                left = mid + 1 # the last mid + 1 is the answer
 
         return left
-
-    # ------------------- PENDING -------------------
     """
         Binary search: duplicate elements, right-most insertion point
-        34. Find First and Last Position of Element in Sorted Array
     """
     def binary_search_with_repeated_right_most(arr, target):
         left = 0
@@ -405,7 +456,7 @@ class templates:
             if arr[mid] > target:
                 right = mid
             else:
-                left = mid + 1
+                left = mid + 1 # the last mid + 1 is the answer
 
         return left
 
@@ -497,6 +548,8 @@ class templates:
 
         memo = {}
         return dp(STATE_FOR_WHOLE_INPUT)
+
+    
     """
         Dynamic programming: bottom-up tabulation
         198. House Robber
@@ -621,3 +674,10 @@ class templates:
                 best_city = i
 
         return best_city
+
+"""
+    Greedy algorithm
+    134. Gas Station
+    455. Assign Cookies
+
+"""
