@@ -1,6 +1,5 @@
 {
   "editor.formatOnSave": true,
-<<<<<<< HEAD
   "files.autoSave": "onWindowChange",
   "docwriter.style": "Auto-detect",
   "python.testing.unittestArgs": [
@@ -12,7 +11,4 @@
   ],
   "python.testing.pytestEnabled": false,
   "python.testing.unittestEnabled": true
-=======
-  "files.autoSave": "onWindowChange"
->>>>>>> c2be556 (Add other patthers)
 }
