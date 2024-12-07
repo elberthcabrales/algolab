@@ -163,4 +163,9 @@ cython_debug/
 #.idea/
 =======
 myenv/
+<<<<<<< HEAD
 >>>>>>> c2be556 (Add other patthers)
+=======
+__pycache__/
+.vscode/*
+>>>>>>> 016e4b3 (Add template with patterns to solve problems)
