@@ -14,3 +14,7 @@ k top
 heap
 stack/queue
 greedy
+
+
+Easy to learn
+https://www.hellointerview.com/learn/code/intervals/insert-interval
